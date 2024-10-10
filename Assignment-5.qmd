@@ -1,0 +1,63 @@
+---
+title: "Assignment 5"
+author: "Ria Krishna"
+date: "10/9/2024"
+format: 
+    html: default
+    pdf: default
+
+---
+
+```{python}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+wdi = pd.read_csv("/Users/riakrishna/Desktop/EmoryJuniorFall/QTM350/assignment5/wdi.csv")
+```
+
+```{python}
+top_five_gdp = wdi[["country", "gdp_per_capita"]].sort_values(by="gdp_per_capita", ascending = False).head(5)
+print(top_five_gdp)
+```
+This shows the five countries with the highest GDP per capita. The countries Monaco, Liechtenstein, Luxembourg, Bermuda, and Norway.
+
+```{python}
+inflation_mean = print(wdi["inflation_rate"].mean())
+```
+This shows the mean inflation rate, which is 12.49.
+
+```{python}
+lowest_five_life_expectancy = wdi[["country", "life_expectancy"]].sort_values(by="life_expectancy", ascending = True).head(5)
+print(lowest_five_life_expectancy)
+
+```
+This shows the five countries with the lowest life expectancy, which are Chad, Lesotho, Nigeria, Central African Republic, and South Sudan.
+
+```{python, echo=false}
+sns.barplot(x="country", y="gdp_per_capita", data = top_five_gdp)
+plt.title("Top 5 Countries by GDP")
+plt.xlabel("Country Name")
+plt.ylabel("GDP Per Capita")
+```
+
+```{python, echo=false}
+plt.figure(figsize=(12,6))
+sns.barplot(x="country", y="life_expectancy", data = lowest_five_life_expectancy)
+plt.ylim(0,100)
+```
+
+| Country      | GDP Per Capita    |  Life Expectancy |
+|--------------|-------------------|------------------|
+|Monaco        | 240862            |                  |
+|Liechtenstein | 187267            |                  |
+|Luxembourg    | 125006            |                  |
+|Bermuda       | 123091            |                  |
+|Norway        | 108798            |                  |
+|Chad          |                   |   52.997         |
+|Lesotho       |                   |   53.036         |
+|Nigeria       |                   |   53.633         |
+|C.A.R.        |                   |   54.477         |
+|South Sudan   |                   |   55.567         |
+
+
+This report shows some key insights from the WDI dataset. The findings show the countries with the highest GDP per capita, and the countries with the lowest life expectancy
